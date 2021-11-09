@@ -15,12 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from core import views, urls
+from core import views
+from simplemooc import urls
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path(include('simplemooc.urls/', namespace='core'))
     path('home/', views.hello, name='home'),
     path('', views.hello, name='home'),
+    path('cursos/', views.courses, name='courses'),
     path('contato/', views.contact, name='contact')
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
