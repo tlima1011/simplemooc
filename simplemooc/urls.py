@@ -29,7 +29,8 @@ urlpatterns = [
     path('', views.hello, name='home'),
     path('cursos/', views.courses, name='courses'),
     path('contato/', views.contact, name='contact'),
-    path('cursos/<int:pk>/', views.details, name='courses')
+    #path('cursos/<int:pk>/', views.details, name='courses')
+    path(r'cursos/<slug:slug>/', views.details, name='courses')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
