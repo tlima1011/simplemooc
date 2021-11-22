@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 # Create your views here.
@@ -20,4 +20,14 @@ def courses(request):
         'courses': courses
     }
     return render(request, template_name, context)
+
+
+def details(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    context = {
+        'course': course
+    }
+    template_name = 'details.html'
+    return render(request, template_name, context)
+
 

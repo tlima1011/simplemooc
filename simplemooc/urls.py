@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
+import appcourses
 from core import views
 from simplemooc import urls
 from django.conf import settings
@@ -26,7 +28,8 @@ urlpatterns = [
     path('home/', views.hello, name='home'),
     path('', views.hello, name='home'),
     path('cursos/', views.courses, name='courses'),
-    path('contato/', views.contact, name='contact')
+    path('contato/', views.contact, name='contact'),
+    path('cursos/<int:pk>/', views.details, name='courses')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
